@@ -1,8 +1,10 @@
 package com.share.utils;
 
 import java.time.*;
+import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Locale;
 
 /**
  * 通用的自定义时间工具类
@@ -304,6 +306,30 @@ public class CommonDateUtil {
                 .with(LocalTime.MAX)
                 .atZone(ZoneId.systemDefault())
                 .toEpochSecond();
+    }
+
+    /**
+     * 获取指定时间戳是星期几，1 代表 星期一 2 代表 星期二 。。。
+     *
+     * @author dupenghui
+     * @date 2018-07-13 14:17
+     * @param timestamp  - 指定时间戳（秒）
+     * @return long
+     */
+    public static long getWeekDayFromTimestamp(long timestamp) {
+        return LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), ZoneId.systemDefault()).getDayOfWeek().getValue();
+    }
+
+    /**
+     * 获取指定时间戳是星期几，eg: 星期一 星期二 。。。
+     *
+     * @author dupenghui
+     * @date 2018-07-13 14:17
+     * @param timestamp  - 指定时间戳（秒）
+     * @return long
+     */
+    public static String getWeekDayFormatFromTimestamp(long timestamp) {
+        return LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), ZoneId.systemDefault()).getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.SIMPLIFIED_CHINESE);
     }
 
 }
