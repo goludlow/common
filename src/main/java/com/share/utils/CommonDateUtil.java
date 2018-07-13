@@ -316,7 +316,7 @@ public class CommonDateUtil {
      * @param timestamp  - 指定时间戳（秒）
      * @return long
      */
-    public static long getWeekDayFromTimestamp(long timestamp) {
+    public static int getWeekDayFromTimestamp(long timestamp) {
         return LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), ZoneId.systemDefault()).getDayOfWeek().getValue();
     }
 
