@@ -26,6 +26,20 @@ public class CommonDateUtil {
     }
 
     /**
+     * 获取当前时间的整点时刻时间戳（秒数）
+     *
+     * @author dupenghui
+     * @date 2018-07-13 10:45
+     * @return long
+     */
+    public static long getCurrentHourTimestamp() {
+        LocalDateTime now = LocalDateTime.now();
+        return LocalDateTime.of(now.toLocalDate(), LocalTime.of(now.getHour(), 0))
+                .atZone(ZoneId.systemDefault())
+                .toEpochSecond();
+    }
+
+    /**
      * 获取和当前天相差多少年月日，此方法常用语求多少岁，xx岁xx月xx天
      *
      * 目标天 < 当前天 正值
@@ -330,6 +344,10 @@ public class CommonDateUtil {
      */
     public static String getWeekDayFormatFromTimestamp(long timestamp) {
         return LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), ZoneId.systemDefault()).getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.SIMPLIFIED_CHINESE);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getCurrentHourTimestamp());
     }
 
 }
